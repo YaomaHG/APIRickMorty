@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      Personajes de Rick and Morty
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,12 +9,32 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Rick and Morty</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div *ngIf="loading" class="ion-text-center" style="margin-top: 20px;">
+    <ion-spinner name="crescent"></ion-spinner>
   </div>
+
+  <div *ngIf="error" class="ion-text-center" style="margin-top: 20px;">
+    <ion-text color="danger">
+      <p>Error al cargar los personajes. Por favor, inténtalo de nuevo más tarde.</p>
+    </ion-text>
+  </div>
+
+  <ion-list *ngIf="!loading && !error">
+    <ion-card *ngFor="let character of characters">
+      <img [src]="character.image" alt="{{character.name}}"/>
+      <ion-card-header>
+        <ion-card-title>{{ character.name }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p><strong>Especie:</strong> {{ character.species }}</p>
+        <p><strong>Estado:</strong> {{ character.status }}</p>
+        <p><strong>Género:</strong> {{ character.gender }}</p>
+        <p><strong>Origen:</strong> {{ character.origin.name }}</p>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
 </ion-content>
