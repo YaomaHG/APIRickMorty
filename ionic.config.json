@@ -1,0 +1,7 @@
+{
+  "name": "APIRickMorty",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
